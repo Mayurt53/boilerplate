@@ -1,0 +1,535 @@
+{
+  "orders": [
+    {
+      "id": "1",
+      "customer": "John Doe",
+      "user": "John Doe",
+      "email": "john@example.com",
+      "phone": "555-123-4567",
+      "items": [
+        {
+          "name": "Wireless Headphones",
+          "qty": 1
+        },
+        {
+          "name": "Greek Yogurt",
+          "qty": 2
+        }
+      ],
+      "products": [
+        {
+          "name": "Wireless Headphones",
+          "qty": 1
+        },
+        {
+          "name": "Greek Yogurt",
+          "qty": 2
+        }
+      ],
+      "total": 349.97,
+      "date": "2024-06-01",
+      "status": "completed",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "2",
+      "customer": "Jane Smith",
+      "user": "Jane Smith",
+      "email": "jane@example.com",
+      "phone": "555-234-5678",
+      "items": [
+        {
+          "name": "Smart Fitness Watch",
+          "qty": 1
+        }
+      ],
+      "products": [
+        {
+          "name": "Smart Fitness Watch",
+          "qty": 1
+        }
+      ],
+      "total": 199.99,
+      "date": "2024-06-02",
+      "status": "pending",
+      "paymentMethod": "PayPal"
+    },
+    {
+      "id": "7e53",
+      "customer": "Mayur Tank",
+      "user": "Mayur Tank",
+      "email": "mayur@example.com",
+      "phone": "555-345-6789",
+      "items": [
+        {
+          "name": "Premium Wireless Headphones",
+          "qty": 1
+        }
+      ],
+      "products": [
+        {
+          "name": "Premium Wireless Headphones",
+          "qty": 1
+        }
+      ],
+      "total": 323.99,
+      "date": "2025-07-04",
+      "status": "pending",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "3803",
+      "customer": "Mayur Tank",
+      "user": "Mayur Tank",
+      "email": "mayur@example.com",
+      "phone": "555-345-6789",
+      "items": [
+        {
+          "name": "Premium Wireless Headphones",
+          "qty": 1
+        }
+      ],
+      "products": [
+        {
+          "name": "Premium Wireless Headphones",
+          "qty": 1
+        }
+      ],
+      "total": 323.99,
+      "date": "2025-07-04",
+      "status": "pending",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "2a42",
+      "customer": "Mayur Tank",
+      "user": "Mayur Tank",
+      "email": "mayurt@pytact.com",
+      "phone": "555-456-7890",
+      "items": [
+        {
+          "name": "Premium Wireless Headphones",
+          "qty": 1
+        }
+      ],
+      "products": [
+        {
+          "name": "Premium Wireless Headphones",
+          "qty": 1
+        }
+      ],
+      "total": 323.99,
+      "date": "2025-07-04",
+      "status": "pending",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "fa16",
+      "customer": "Mayur Tank",
+      "user": "Mayur Tank",
+      "email": "mayurt@pytact.com",
+      "phone": "555-456-7890",
+      "items": [
+        {
+          "name": "Apple",
+          "qty": 1
+        }
+      ],
+      "products": [
+        {
+          "name": "Apple",
+          "qty": 1
+        }
+      ],
+      "total": 2.16,
+      "date": "2025-07-04",
+      "status": "completed",
+      "paymentMethod": "PayPal"
+    },
+    {
+      "id": "dfdc",
+      "customer": "Mayur Tank",
+      "user": "Mayur Tank",
+      "email": "mayur@example.com",
+      "phone": "555-345-6789",
+      "items": [
+        {
+          "name": "Neural Laptop X1",
+          "qty": 1
+        }
+      ],
+      "products": [
+        {
+          "name": "Neural Laptop X1",
+          "qty": 1
+        }
+      ],
+      "total": 2699.99,
+      "date": "2025-07-05",
+      "status": "processing",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "3876",
+      "customer": "Mayur Tank",
+      "user": "Mayur Tank",
+      "email": "mayur@example.com",
+      "phone": "555-345-6789",
+      "items": [
+        {
+          "name": "Neural Laptop X1",
+          "qty": 1
+        }
+      ],
+      "products": [
+        {
+          "name": "Neural Laptop X1",
+          "qty": 1
+        }
+      ],
+      "total": 2699.99,
+      "date": "2025-07-05",
+      "status": "pending",
+      "paymentMethod": "Credit Card"
+    },
+    {
+      "id": "62dc",
+      "customer": "Mayur Tan",
+      "user": "Mayur Tan",
+      "email": "mayur.tan@example.com",
+      "phone": "555-567-8901",
+      "items": [
+        {
+          "name": "Quantum Smartphone Pro",
+          "qty": 1
+        }
+      ],
+      "products": [
+        {
+          "name": "Quantum Smartphone Pro",
+          "qty": 1
+        }
+      ],
+      "total": 1403.99,
+      "date": "2025-07-05",
+      "status": "shipped",
+      "paymentMethod": "Cryptocurrency"
+    },
+    {
+      "id": "4eb5",
+      "customer": "mayur Tank",
+      "user": "mayur Tank",
+      "email": "mayur@example.com",
+      "phone": "555-678-9012",
+      "items": [
+        {
+          "name": "Neural Laptop X1",
+          "qty": 1
+        }
+      ],
+      "products": [
+        {
+          "name": "Neural Laptop X1",
+          "qty": 1
+        }
+      ],
+      "total": 2699.99,
+      "date": "2025-07-05",
+      "status": "pending",
+      "paymentMethod": "Credit Card"
+    }
+  ],
+  "applicants": [
+    {
+      "id": "1",
+      "name": "Alice Johnson",
+      "email": "alice@example.com",
+      "phone": "555-1234",
+      "resume": "https://example.com/resume/alice.pdf",
+      "status": "reviewing",
+      "meet": "",
+      "selection": "",
+      "position": "Senior Frontend Developer",
+      "experience": "4-5 years",
+      "skills": [
+        "JavaScript",
+        "React",
+        "Node.js",
+        "TypeScript",
+        "Tailwind CSS"
+      ],
+      "appliedDate": "2024-01-15",
+      "education": "Bachelor's Degree in Computer Science"
+    },
+    {
+      "id": "2",
+      "name": "Bob Smith",
+      "email": "bob.smith@email.com",
+      "phone": "555-5678",
+      "resume": "https://example.com/resume/bob.pdf",
+      "status": "interviewed",
+      "meet": "",
+      "selection": "",
+      "position": "UI/UX Designer",
+      "experience": "3-4 years",
+      "skills": [
+        "Figma",
+        "Adobe Creative Suite",
+        "User Research",
+        "Prototyping"
+      ],
+      "appliedDate": "2024-01-10",
+      "education": "Master's Degree in Design"
+    },
+    {
+      "id": "3",
+      "name": "Carol Davis",
+      "email": "carol.davis@email.com",
+      "phone": "555-9012",
+      "resume": "https://example.com/resume/carol.pdf",
+      "status": "hired",
+      "meet": "",
+      "selection": "",
+      "position": "Full Stack Developer",
+      "experience": "2-3 years",
+      "skills": [
+        "Python",
+        "Django",
+        "React",
+        "PostgreSQL",
+        "Docker"
+      ],
+      "appliedDate": "2024-01-05",
+      "education": "Bachelor's Degree in Software Engineering"
+    },
+    {
+      "id": "3473",
+      "name": "bvbvbvnvb vbnvnbvm",
+      "email": "user@gmail.com",
+      "phone": "1234567891",
+      "education": "Associate's Degree",
+      "experience": "0-1 years",
+      "resume": "https://drive.google.com/file/d/1a2b3c4d5e6f7g8h9i0j1234567890ab/view?usp=sharing",
+      "status": "pending",
+      "meet": "",
+      "selection": "",
+      "position": "Junior Developer",
+      "skills": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Git"
+      ],
+      "appliedDate": "2024-01-20"
+    }
+  ],
+  "products": [
+    {
+      "name": "Premium Wireless Headphones",
+      "description": "High-quality wireless headphones with noise cancellation and premium sound quality.",
+      "price": 299.99,
+      "category": "Electronics",
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+      "inStock": false,
+      "rating": 4.8,
+      "reviews": 1247,
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Smart Fitness Watch",
+      "price": 199.99,
+      "originalPrice": 249.99,
+      "category": "Electronics",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop",
+      "rating": 4.6,
+      "reviews": 892,
+      "description": "Advanced fitness tracking with heart rate monitoring and GPS capabilities.",
+      "features": [
+        "Heart Rate Monitor",
+        "GPS Tracking",
+        "Water Resistant",
+        "7-day Battery"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Ultra HD Camera",
+      "price": 599.99,
+      "originalPrice": 799.99,
+      "category": "Electronics",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=400&fit=crop",
+      "rating": 4.9,
+      "reviews": 567,
+      "description": "Professional 4K camera with advanced autofocus and image stabilization.",
+      "features": [
+        "4K Recording",
+        "Image Stabilization",
+        "Auto Focus",
+        "WiFi Connect"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Organic Bananas",
+      "price": 2.99,
+      "originalPrice": 3.99,
+      "category": "Grocery",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
+      "rating": 4.7,
+      "reviews": 2341,
+      "description": "Fresh organic bananas, perfect for smoothies, baking, or healthy snacking.",
+      "features": [
+        "Organic",
+        "Fresh",
+        "Rich in Potassium",
+        "No Pesticides"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Fresh Strawberries",
+      "price": 4.99,
+      "originalPrice": 6.99,
+      "category": "Grocery",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=400&h=400&fit=crop",
+      "rating": 4.8,
+      "reviews": 1892,
+      "description": "Sweet and juicy strawberries, perfect for desserts or fresh eating.",
+      "features": [
+        "Fresh",
+        "Sweet",
+        "Rich in Vitamin C",
+        "Locally Sourced"
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Organic Whole Milk",
+      "price": 4.99,
+      "originalPrice": 5.99,
+      "category": "Grocery",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=400&fit=crop",
+      "rating": 4.7,
+      "reviews": 2341,
+      "description": "Fresh organic whole milk from grass-fed cows, rich and creamy.",
+      "features": [
+        "Organic",
+        "Whole Milk",
+        "Grass-Fed",
+        "Rich in Calcium"
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Wireless Gaming Mouse",
+      "price": 89.99,
+      "originalPrice": 129.99,
+      "category": "Electronics",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop",
+      "rating": 4.7,
+      "reviews": 2341,
+      "description": "High-precision gaming mouse with customizable RGB lighting and programmable buttons.",
+      "features": [
+        "25K DPI",
+        "RGB Lighting",
+        "Programmable Buttons",
+        "Wireless"
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Mechanical Keyboard",
+      "price": 149.99,
+      "originalPrice": 199.99,
+      "category": "Electronics",
+      "inStock": true,
+      "image": "https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=400&h=400&fit=crop",
+      "rating": 4.5,
+      "reviews": 1567,
+      "description": "Premium mechanical keyboard with Cherry MX switches and customizable backlighting.",
+      "features": [
+        "Cherry MX Switches",
+        "RGB Backlight",
+        "Aluminum Frame",
+        "USB-C"
+      ]
+    },
+    {
+      "id": "6793",
+      "name": "Apple",
+      "price": 2,
+      "category": "Grocery",
+      "inStock": true,
+      "image": "blob:http://localhost:3000/f2b91d16-aad5-4485-a9c3-803a88e97556"
+    }
+  ],
+  "staff": [
+    {
+      "name": "Sarah Johnson",
+      "email": "sarah.johnson@dreamworld.com",
+      "phone": "+1 (555) 123-4567",
+      "position": "Senior Frontend Developer",
+      "department": "Engineering",
+      "hireDate": "2022-03-15",
+      "salary": "120000",
+      "status": "Active",
+      "avatar": "👩‍💻",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "Michael Chen",
+      "email": "michael.chen@dreamworld.com",
+      "phone": "+1 (555) 234-5678",
+      "position": "UI/UX Designer",
+      "department": "Design",
+      "hireDate": "2021-08-22",
+      "salary": "95000",
+      "status": "Active",
+      "avatar": "👨‍🎨"
+    },
+    {
+      "id": "3",
+      "name": "Emily Rodriguez",
+      "email": "emily.rodriguez@dreamworld.com",
+      "phone": "+1 (555) 345-6789",
+      "position": "Project Manager",
+      "department": "Product",
+      "hireDate": "2022-01-10",
+      "salary": "110000",
+      "status": "Active",
+      "avatar": "👩‍💼"
+    },
+    {
+      "id": "4",
+      "name": "David Kim",
+      "email": "david.kim@dreamworld.com",
+      "phone": "+1 (555) 456-7890",
+      "position": "Product Strategist",
+      "department": "Product",
+      "hireDate": "2021-11-05",
+      "salary": "130000",
+      "status": "Active",
+      "avatar": "👨‍🎯"
+    },
+    {
+      "name": "Alex Thompson",
+      "email": "alex.thompson@dreamworld.com",
+      "phone": "+1 (555) 567-8901",
+      "position": "Business Development Manager",
+      "department": "Sales",
+      "hireDate": "2022-06-20",
+      "salary": "100000",
+      "status": "Terminated",
+      "avatar": "👨‍💼",
+      "id": "5"
+    }
+  ]
+}
