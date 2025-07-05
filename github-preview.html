@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern React Web Application - GitHub Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 255, 0.1) 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 15px;
+        }
+
+        .feature-description {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        .tech-stack {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 0, 255, 0.2);
+        }
+
+        .tech-title {
+            font-size: 2rem;
+            text-align: center;
+            color: #ff00ff;
+            margin-bottom: 30px;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tech-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .tech-name {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .demo-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 0, 0.2);
+        }
+
+        .demo-title {
+            font-size: 2rem;
+            text-align: center;
+            color: #ffff00;
+            margin-bottom: 30px;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .demo-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .demo-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .demo-name {
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .demo-desc {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(0, 255, 255, 0.1) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            color: #00ff00;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00ff00, #00ffff);
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+        }
+
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header glow">
+            <h1 class="title">🚀 Modern React Web Application</h1>
+            <p class="subtitle">Complete Full-Stack Solution with Admin Dashboard & User Interface</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🏠</span>
+                <h3 class="feature-title">User-Facing Pages</h3>
+                <p class="feature-description">Beautiful landing page, product catalog, shopping cart, user profiles, and more. Fully responsive design that works on all devices.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🔧</span>
+                <h3 class="feature-title">Admin Dashboard</h3>
+                <p class="feature-description">Complete admin panel for managing products, orders, applicants, staff, and settings. Real-time data management with intuitive interface.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🛒</span>
+                <h3 class="feature-title">E-Commerce Features</h3>
+                <p class="feature-description">Shopping cart, checkout process, order management, product catalog with images, and payment integration ready.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">👥</span>
+                <h3 class="feature-title">User Management</h3>
+                <p class="feature-description">User registration, authentication, profile management, social login (Google, GitHub), and role-based access control.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">📊</span>
+                <h3 class="feature-title">Data Management</h3>
+                <p class="feature-description">Redux state management, RTK Query for API calls, local storage, and real-time data synchronization between admin and user sides.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-icon">🎨</span>
+                <h3 class="feature-title">Modern Design</h3>
+                <p class="feature-description">Dark theme with neon accents, Tailwind CSS, responsive design, accessibility features, and professional UI/UX.</p>
+            </div>
+        </div>
+
+        <div class="tech-stack">
+            <h2 class="tech-title">🛠️ Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <span class="tech-icon">⚛️</span>
+                    <div class="tech-name">React 18</div>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon">🔄</span>
+                    <div class="tech-name">Redux Toolkit</div>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon">🎨</span>
+                    <div class="tech-name">Tailwind CSS</div>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon">🛣️</span>
+                    <div class="tech-name">React Router</div>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon">🔗</span>
+                    <div class="tech-name">RTK Query</div>
+                </div>
+                <div class="tech-item">
+                    <span class="tech-icon">🔐</span>
+                    <div class="tech-name">OAuth 2.0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2 class="demo-title">🎯 Key Features Demo</h2>
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <span class="demo-icon">📱</span>
+                    <div class="demo-name">Responsive Design</div>
+                    <div class="demo-desc">Works perfectly on mobile, tablet, and desktop</div>
+                </div>
+                <div class="demo-item">
+                    <span class="demo-icon">🔐</span>
+                    <div class="demo-name">Authentication</div>
+                    <div class="demo-desc">Secure login with social providers</div>
+                </div>
+                <div class="demo-item">
+                    <span class="demo-icon">🛒</span>
+                    <div class="demo-name">Shopping Cart</div>
+                    <div class="demo-desc">Persistent cart with checkout flow</div>
+                </div>
+                <div class="demo-item">
+                    <span class="demo-icon">📊</span>
+                    <div class="demo-name">Admin Dashboard</div>
+                    <div class="demo-desc">Complete management interface</div>
+                </div>
+                <div class="demo-item">
+                    <span class="demo-icon">📅</span>
+                    <div class="demo-name">Interview Scheduling</div>
+                    <div class="demo-desc">Google Meet integration for applicants</div>
+                </div>
+                <div class="demo-item">
+                    <span class="demo-icon">🎨</span>
+                    <div class="demo-name">Dark Theme</div>
+                    <div class="demo-desc">Modern cyberpunk aesthetic</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">🚀 Ready to Get Started?</h2>
+            <p class="cta-description">Clone the repository and start building your next web application today!</p>
+            <button class="cta-button" onclick="copyCommand()">📋 Copy Clone Command</button>
+        </div>
+
+        <div class="footer">
+            <p>✨ Built with modern web technologies and best practices</p>
+            <p>📚 Includes comprehensive documentation and beginner guides</p>
+        </div>
+    </div>
+
+    <script>
+        function copyCommand() {
+            const command = 'git clone https://github.com/yourusername/boilerplate.git';
+            navigator.clipboard.writeText(command).then(() => {
+                const button = document.querySelector('.cta-button');
+                const originalText = button.textContent;
+                button.textContent = '✅ Copied!';
+                button.style.background = 'linear-gradient(45deg, #00ff00, #00cc00)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(45deg, #00ff00, #00ffff)';
+                }, 2000);
+            });
+        }
+
+        // Add some interactive effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html> 
