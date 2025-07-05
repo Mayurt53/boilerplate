@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Card from '../../../components/Card';
+import {
+  useGetStaffQuery,
+  useAddStaffMutation,
+  useUpdateStaffMutation,
+  useDeleteStaffMutation,
+} from '../../../services/apiSlice';
 
 const AdminProfile = () => {
   const [isEditing, setIsEditing] = useState(false);

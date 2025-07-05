@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Select from 'react-select';
-import { getApplicants, addApplicant, updateApplicant, deleteApplicant, addStaff } from '../../../services/api';
+import {
+  useGetApplicantsQuery,
+  useAddApplicantMutation,
+  useUpdateApplicantMutation,
+  useDeleteApplicantMutation,
+} from '../../../services/apiSlice';
 import Card from '../../../components/Card';
 import Button from '../../../components/Button';
 import DataTable from '../../../components/DataTable';
 import Modal from '../../../components/Modal';
 
 function AdminApplicants() {
-  const [applicants, setApplicants] = useState([]);
   const [selected, setSelected] = useState(null);
   const [form, setForm] = useState({ date: '', time: '', notes: '', meet: '', selection: '' });
   const [search, setSearch] = useState('');
@@ -26,9 +30,16 @@ function AdminApplicants() {
     duration: '60'
   });
 
-  useEffect(() => {
-    getApplicants().then(res => setApplicants(res.data));
-  }, []);
+  // RTK Query hooks
+  const {
+    data: applicants = [],
+    isLoading: isLoadingApplicants,
+    isError,
+    refetch,
+  } = useGetApplicantsQuery();
+  const [addApplicant, { isLoading: isAdding }] = useAddApplicantMutation();
+  const [updateApplicant, { isLoading: isUpdating }] = useUpdateApplicantMutation();
+  const [deleteApplicant, { isLoading: isDeleting }] = useDeleteApplicantMutation();
 
   const filtered = applicants.filter(a =>
     a.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -88,9 +99,9 @@ function AdminApplicants() {
     
     try {
       // Update the applicant with interview details
-      const updatedApplicant = await updateApplicant(selected.id, {
-        ...selected,
-        status: 'Interview Scheduled',
+      const updatedApplicant = await updateApplicant({
+      ...selected,
+      status: 'Interview Scheduled',
         interview: {
           date: scheduleForm.date,
           time: scheduleForm.time,
@@ -101,14 +112,14 @@ function AdminApplicants() {
       });
 
       // Update the applicants list
-      setApplicants(applicants.map(a => a.id === selected.id ? updatedApplicant.data : a));
+      refetch();
       
       setInfoMessage(`Interview scheduled for ${selected.name} on ${scheduleForm.date} at ${scheduleForm.time}`);
       setTimeout(() => setInfoMessage(''), 3000);
       
       // Close modal and reset form
       setShowScheduleModal(false);
-      setSelected(null);
+    setSelected(null);
       setScheduleForm({
         date: '',
         time: '',
@@ -123,16 +134,6 @@ function AdminApplicants() {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  // Add applicant (if you have a form for adding applicants)
-  const handleAddApplicant = (newApplicant) => {
-    addApplicant(newApplicant).then(res => setApplicants([...applicants, res.data]));
-  };
-
-  // Delete applicant
-  const handleDeleteApplicant = (id) => {
-    deleteApplicant(id).then(() => setApplicants(applicants.filter(a => a.id !== id)));
   };
 
   const selectionOptions = [
@@ -170,9 +171,7 @@ function AdminApplicants() {
   const handleStatusUpdate = async (applicantId, newStatus) => {
     setIsLoading(true);
     await new Promise(resolve => setTimeout(resolve, 500));
-    setApplicants(applicants.map(applicant => 
-      applicant.id === applicantId ? { ...applicant, status: newStatus } : applicant
-    ));
+    refetch();
     setIsLoading(false);
   };
 
@@ -309,7 +308,7 @@ function AdminApplicants() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => handleDeleteApplicant(applicant.id)}
+            onClick={() => deleteApplicant(applicant.id)}
             icon="🗑️"
             className="text-neon-red hover:text-neon-red/80"
           >
@@ -376,7 +375,7 @@ function AdminApplicants() {
           {stats.map((stat, index) => (
             <Card key={index} variant="glass" className="p-6">
               <div className="flex items-center justify-between">
-                <div>
+    <div>
                   <p className="text-white/70 text-sm">{stat.label}</p>
                   <p className="text-3xl font-bold text-white">{stat.value}</p>
                 </div>
@@ -467,7 +466,7 @@ function AdminApplicants() {
                       {applicant.appliedDate} • {applicant.experience ?? 0} experience
                     </p>
                   </div>
-                </div>
+      </div>
                 <div className="text-right">
                   <span className={`px-2 py-1 rounded-full text-xs font-bold bg-${getStatusColor(applicant.status)}/20 text-${getStatusColor(applicant.status)} border border-${getStatusColor(applicant.status)}`}>
                     {getStatusText(applicant.status)}
@@ -640,8 +639,8 @@ function AdminApplicants() {
 
             <div className="form-group">
               <label className="form-label">Google Meet Link</label>
-              <input
-                type="url"
+                <input
+                  type="url"
                 name="googleMeetLink"
                 value={scheduleForm.googleMeetLink}
                 onChange={(e) => setScheduleForm({ ...scheduleForm, googleMeetLink: e.target.value })}
@@ -669,19 +668,19 @@ function AdminApplicants() {
                 <option value="90">1.5 hours</option>
                 <option value="120">2 hours</option>
               </select>
-            </div>
+              </div>
 
             <div className="form-group">
               <label className="form-label">Notes</label>
-              <textarea
+                <textarea
                 name="notes"
                 value={scheduleForm.notes}
                 onChange={(e) => setScheduleForm({ ...scheduleForm, notes: e.target.value })}
                 placeholder="Any additional notes for the interview..."
                 rows={3}
                 className="input resize-none"
-              />
-            </div>
+                />
+              </div>
 
             <div className="flex gap-4">
               <Button
@@ -711,8 +710,8 @@ function AdminApplicants() {
               >
                 Cancel
               </Button>
-            </div>
-          </form>
+              </div>
+            </form>
         </Modal>
       )}
     </div>

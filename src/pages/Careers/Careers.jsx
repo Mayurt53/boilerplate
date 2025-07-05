@@ -382,10 +382,10 @@ const Careers = () => {
                   {benefit.description}
                 </p>
               </div>
-            ))}
-          </div>
+          ))}
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Application Modal */}
       <Modal

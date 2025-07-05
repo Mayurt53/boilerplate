@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = ({ children, adminOnly }) => {
   const { isAuthenticated, loading } = useUser();
 
   // Show loading while checking authentication
@@ -15,6 +15,14 @@ const ProtectedRoute = ({ children }) => {
         </div>
       </div>
     );
+  }
+
+  if (adminOnly) {
+    const isAdmin = localStorage.getItem('isAdmin') === 'true';
+    if (!isAdmin) {
+      return <Navigate to="/admin/login" replace />;
+    }
+    return children;
   }
 
   // Redirect to login if not authenticated

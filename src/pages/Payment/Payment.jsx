@@ -3,7 +3,12 @@ import { useCart } from '../../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import jsPDF from 'jspdf';
-import { addOrder } from '../../services/api';
+import {
+  useGetOrdersQuery,
+  useAddOrderMutation,
+  useUpdateOrderMutation,
+  useDeleteOrderMutation,
+} from '../../services/apiSlice';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Card from '../../components/Card';
@@ -30,6 +35,7 @@ function Payment() {
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('card');
+  const [addOrder, { isLoading: isAddingOrder }] = useAddOrderMutation();
 
   // Always calculate from cart for the form/checkout view
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);

@@ -22,6 +22,7 @@ const AdminLogin = () => {
     
     // Mock admin credentials check
     if (formData.email === 'admin@cybertech.com' && formData.password === 'admin123') {
+      localStorage.setItem('isAdmin', 'true');
       navigate('/admin/dashboard');
     } else {
       setError('Invalid admin credentials');

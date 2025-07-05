@@ -1,16 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Card from '../../../components/Card';
 import Button from '../../../components/Button';
 import Input from '../../../components/Input';
 import Modal from '../../../components/Modal';
 import DataTable from '../../../components/DataTable';
-import { getProducts, addProduct, updateProduct, deleteProduct } from '../../../services/api';
+import {
+  useGetProductsQuery,
+  useAddProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
+} from '../../../services/apiSlice';
 
 const AdminProducts = () => {
-  const [products, setProducts] = useState([]);
+  // RTK Query hooks
+  const {
+    data: products = [],
+    isLoading,
+    isError,
+    refetch,
+  } = useGetProductsQuery();
+  const [addProduct, { isLoading: isAdding }] = useAddProductMutation();
+  const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
+  const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -22,22 +36,6 @@ const AdminProducts = () => {
     rating: 4.5,
     reviews: 0
   });
-
-  useEffect(() => {
-    loadProducts();
-  }, []);
-
-  const loadProducts = async () => {
-    setIsLoading(true);
-    try {
-      const response = await getProducts();
-      setProducts(response.data || []);
-    } catch (error) {
-      console.error('Error loading products:', error);
-      setProducts([]);
-    }
-    setIsLoading(false);
-  };
 
   const categories = [
     { id: 'Electronics', name: 'Electronics', icon: '📱' },
@@ -51,23 +49,18 @@ const AdminProducts = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    
+    const productData = {
+      ...formData,
+      price: parseFloat(formData.price),
+      rating: parseFloat(formData.rating),
+      reviews: parseInt(formData.reviews)
+    };
     try {
-      const productData = {
-        ...formData,
-        price: parseFloat(formData.price),
-        rating: parseFloat(formData.rating),
-        reviews: parseInt(formData.reviews)
-      };
-
       if (editingProduct) {
-        await updateProduct(editingProduct.id, productData);
+        await updateProduct({ id: editingProduct.id, ...productData });
       } else {
         await addProduct(productData);
       }
-      
-      await loadProducts(); // Reload products from database
       setIsModalOpen(false);
       setEditingProduct(null);
       setFormData({
@@ -80,10 +73,10 @@ const AdminProducts = () => {
         rating: 4.5,
         reviews: 0
       });
+      refetch();
     } catch (error) {
       console.error('Error saving product:', error);
     }
-    setIsLoading(false);
   };
 
   const handleEdit = (product) => {
@@ -103,14 +96,12 @@ const AdminProducts = () => {
 
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      setIsLoading(true);
       try {
         await deleteProduct(id);
-        await loadProducts(); // Reload products from database
+        refetch();
       } catch (error) {
         console.error('Error deleting product:', error);
       }
-      setIsLoading(false);
     }
   };
 
@@ -296,9 +287,9 @@ const AdminProducts = () => {
         {/* Products Table */}
         <Card variant="glass" className="p-6">
           <DataTable
-            data={products}
             columns={columns}
-            loading={isLoading}
+            data={products}
+            isLoading={isLoading || isAdding || isUpdating || isDeleting}
             emptyMessage="No products found. Add your first product to get started."
           />
         </Card>
@@ -431,7 +422,7 @@ const AdminProducts = () => {
               <Button
                 type="submit"
                 variant="cyber"
-                loading={isLoading}
+                loading={isLoading || isAdding || isUpdating}
                 icon="💾"
                 className="flex-1"
               >

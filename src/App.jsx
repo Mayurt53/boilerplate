@@ -47,14 +47,16 @@ function ScrollToTop() {
 }
 
 function App() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
   return (
     <UserProvider>
       <CartProvider>
         <ToastProvider>
           <div className="min-h-screen bg-dark-50 flex flex-col">
             <ScrollToTop />
-            <Navigation />
-            <main className="flex-1 pt-20">
+            {!isAdminRoute && <Navigation />}
+            <main className={`flex-1 ${!isAdminRoute ? 'pt-20' : ''}`}>
               <Routes>
                 {/* Public Routes */}
                 <Route path="/" element={<Home />} />

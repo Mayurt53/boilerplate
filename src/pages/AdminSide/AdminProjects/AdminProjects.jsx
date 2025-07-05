@@ -27,8 +27,8 @@ const AdminProjects = () => {
     // Simulate loading projects
     setTimeout(() => {
       setProjects([
-        {
-          id: 1,
+  {
+    id: 1,
           name: 'Quantum Computing Platform',
           description: 'Development of a next-generation quantum computing platform for research institutions.',
           client: 'TechCorp Research',
@@ -39,9 +39,9 @@ const AdminProjects = () => {
           priority: 'high',
           team: ['Dr. Sarah Chen', 'Alex Thompson', 'Emily Watson'],
           progress: 65
-        },
-        {
-          id: 2,
+  },
+  {
+    id: 2,
           name: 'AI-Powered Analytics Dashboard',
           description: 'Creating an intelligent analytics dashboard for enterprise clients.',
           client: 'DataFlow Inc.',
@@ -52,9 +52,9 @@ const AdminProjects = () => {
           priority: 'medium',
           team: ['Marcus Rodriguez', 'Lisa Park'],
           progress: 15
-        },
-        {
-          id: 3,
+  },
+  {
+    id: 3,
           name: 'Cybersecurity Framework',
           description: 'Building a comprehensive cybersecurity framework for financial institutions.',
           client: 'SecureBank',
@@ -292,7 +292,7 @@ const AdminProjects = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <div>
+    <div>
             <h1 className="text-4xl font-cyber font-bold text-white mb-2">
               Project Management
             </h1>
@@ -463,7 +463,7 @@ const AdminProjects = () => {
               <div className="grid grid-cols-2 gap-2 max-h-32 overflow-y-auto">
                 {teamMembers.map((member) => (
                   <label key={member} className="flex items-center space-x-2">
-                    <input
+                  <input
                       type="checkbox"
                       checked={formData.team.includes(member)}
                       onChange={(e) => {

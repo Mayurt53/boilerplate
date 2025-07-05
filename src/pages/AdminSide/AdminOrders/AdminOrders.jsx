@@ -1,85 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../../../components/Card';
 import Button from '../../../components/Button';
 import DataTable from '../../../components/DataTable';
 import Modal from '../../../components/Modal';
+import {
+  useGetOrdersQuery,
+  useAddOrderMutation,
+  useUpdateOrderMutation,
+  useDeleteOrderMutation,
+} from '../../../services/apiSlice';
 
 const AdminOrders = () => {
   const navigate = useNavigate();
-  const [orders, setOrders] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [showOrderModal, setShowOrderModal] = useState(false);
 
-  useEffect(() => {
-    // Simulate loading orders
-    setTimeout(() => {
-      setOrders([
-        {
-          id: 1,
-          customer: 'John Doe',
-          email: 'john@example.com',
-          products: ['Quantum Analytics Suite'],
-          total: 25000,
-          status: 'completed',
-          date: '2024-01-15',
-          paymentMethod: 'Credit Card',
-          address: '123 Main St, Tech City, TC 12345',
-          phone: '+1 (555) 123-4567'
-        },
-        {
-          id: 2,
-          customer: 'Jane Smith',
-          email: 'jane@example.com',
-          products: ['Neural Network Framework', 'CyberShield Pro'],
-          total: 23000,
-          status: 'pending',
-          date: '2024-01-14',
-          paymentMethod: 'PayPal',
-          address: '456 Innovation Ave, Future City, FC 67890',
-          phone: '+1 (555) 987-6543'
-        },
-        {
-          id: 3,
-          customer: 'Mike Johnson',
-          email: 'mike@example.com',
-          products: ['CloudSync Platform'],
-          total: 12000,
-          status: 'processing',
-          date: '2024-01-13',
-          paymentMethod: 'Credit Card',
-          address: '789 Cyber Blvd, Digital Town, DT 11111',
-          phone: '+1 (555) 456-7890'
-        },
-        {
-          id: 4,
-          customer: 'Sarah Wilson',
-          email: 'sarah@example.com',
-          products: ['Predictive Analytics Engine'],
-          total: 18000,
-          status: 'completed',
-          date: '2024-01-12',
-          paymentMethod: 'Cryptocurrency',
-          address: '321 Quantum Lane, AI City, AC 22222',
-          phone: '+1 (555) 321-6540'
-        },
-        {
-          id: 5,
-          customer: 'David Brown',
-          email: 'david@example.com',
-          products: ['Quantum Encryption System'],
-          total: 30000,
-          status: 'cancelled',
-          date: '2024-01-11',
-          paymentMethod: 'Credit Card',
-          address: '654 Security St, Safe City, SC 33333',
-          phone: '+1 (555) 789-0123'
-        }
-      ]);
-    }, 1000);
-  }, []);
+  // RTK Query hooks
+  const {
+    data: orders = [],
+    isLoading,
+    isError,
+    refetch,
+  } = useGetOrdersQuery();
+  const [addOrder, { isLoading: isAdding }] = useAddOrderMutation();
+  const [updateOrder, { isLoading: isUpdating }] = useUpdateOrderMutation();
+  const [deleteOrder, { isLoading: isDeleting }] = useDeleteOrderMutation();
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -98,12 +45,8 @@ const AdminOrders = () => {
   };
 
   const handleStatusUpdate = async (orderId, newStatus) => {
-    setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 500));
-    setOrders(orders.map(order => 
-      order.id === orderId ? { ...order, status: newStatus } : order
-    ));
-    setIsLoading(false);
+    await updateOrder({ id: orderId, status: newStatus });
+    refetch();
   };
 
   const handleViewOrder = (order) => {
@@ -283,7 +226,7 @@ const AdminOrders = () => {
           {stats.map((stat, index) => (
             <Card key={index} variant="glass" className="p-6">
               <div className="flex items-center justify-between">
-                <div>
+    <div>
                   <p className="text-white/70 text-sm">{stat.label}</p>
                   <p className="text-3xl font-bold text-white">{stat.value}</p>
                 </div>
@@ -301,7 +244,7 @@ const AdminOrders = () => {
               ${totalRevenue.toLocaleString()}
             </p>
             <p className="text-white/70 text-sm mt-2">From completed orders</p>
-          </div>
+      </div>
         </Card>
 
         {/* Filters */}
@@ -363,7 +306,7 @@ const AdminOrders = () => {
                   <p className="text-white/70 text-sm">{order.date ?? 'Unknown'}</p>
                   <span className={`px-2 py-1 rounded-full text-xs font-bold bg-${getStatusColor(order.status)}/20 text-${getStatusColor(order.status)} border border-${getStatusColor(order.status)}`}>
                     {getStatusText(order.status)}
-                  </span>
+                    </span>
                 </div>
               </div>
             ))}
@@ -544,7 +487,7 @@ const AdminOrders = () => {
                 Generate Invoice
               </Button>
             </div>
-          </div>
+        </div>
         </Modal>
       )}
     </div>

@@ -336,7 +336,7 @@ const AdminSettings = () => {
                   onChange={(e) => setEmailSettings({ ...emailSettings, fromEmail: e.target.value })}
                   icon="📧"
                 />
-              </div>
+        </div>
 
               <Button
                 type="submit"
@@ -346,7 +346,7 @@ const AdminSettings = () => {
               >
                 {isLoading ? 'Saving...' : 'Save Email Settings'}
               </Button>
-            </form>
+      </form>
           </Card>
         )}
 
@@ -394,10 +394,10 @@ const AdminSettings = () => {
                       />
                       <div className="w-11 h-6 bg-dark-400 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-cyan"></div>
                     </label>
-                  </div>
+      </div>
 
                   <div className="flex items-center justify-between p-4 bg-dark-300 rounded-xl border border-dark-400">
-                    <div>
+      <div>
                       <h4 className="text-white font-medium">Push Notifications</h4>
                       <p className="text-white/70 text-sm">Receive browser push notifications</p>
                     </div>

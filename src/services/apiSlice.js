@@ -14,7 +14,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User', 'Post', 'Comment'], // Define tag types for cache invalidation
+  tagTypes: ['User', 'Post', 'Comment', 'Product', 'Order', 'Applicant', 'Staff'], // Define tag types for cache invalidation
   endpoints: (builder) => ({
     // Example endpoint - remove or modify as needed
     getUsers: builder.query({
@@ -48,6 +48,166 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['User'],
     }),
+    // PRODUCTS
+    getProducts: builder.query({
+      query: () => 'products',
+      providesTags: (result = [], error, arg) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Product', id })),
+              { type: 'Product', id: 'LIST' },
+            ]
+          : [{ type: 'Product', id: 'LIST' }],
+    }),
+    addProduct: builder.mutation({
+      query: (product) => ({
+        url: 'products',
+        method: 'POST',
+        body: product,
+      }),
+      invalidatesTags: [{ type: 'Product', id: 'LIST' }],
+    }),
+    updateProduct: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `products/${id}`,
+        method: 'PUT',
+        body: patch,
+      }),
+      invalidatesTags: (result, error, { id }) => [
+        { type: 'Product', id },
+        { type: 'Product', id: 'LIST' },
+      ],
+    }),
+    deleteProduct: builder.mutation({
+      query: (id) => ({
+        url: `products/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (result, error, id) => [
+        { type: 'Product', id },
+        { type: 'Product', id: 'LIST' },
+      ],
+    }),
+    // ORDERS
+    getOrders: builder.query({
+      query: () => 'orders',
+      providesTags: (result = [], error, arg) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Order', id })),
+              { type: 'Order', id: 'LIST' },
+            ]
+          : [{ type: 'Order', id: 'LIST' }],
+    }),
+    addOrder: builder.mutation({
+      query: (order) => ({
+        url: 'orders',
+        method: 'POST',
+        body: order,
+      }),
+      invalidatesTags: [{ type: 'Order', id: 'LIST' }],
+    }),
+    updateOrder: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `orders/${id}`,
+        method: 'PUT',
+        body: patch,
+      }),
+      invalidatesTags: (result, error, { id }) => [
+        { type: 'Order', id },
+        { type: 'Order', id: 'LIST' },
+      ],
+    }),
+    deleteOrder: builder.mutation({
+      query: (id) => ({
+        url: `orders/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (result, error, id) => [
+        { type: 'Order', id },
+        { type: 'Order', id: 'LIST' },
+      ],
+    }),
+    // APPLICANTS
+    getApplicants: builder.query({
+      query: () => 'applicants',
+      providesTags: (result = [], error, arg) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Applicant', id })),
+              { type: 'Applicant', id: 'LIST' },
+            ]
+          : [{ type: 'Applicant', id: 'LIST' }],
+    }),
+    addApplicant: builder.mutation({
+      query: (applicant) => ({
+        url: 'applicants',
+        method: 'POST',
+        body: applicant,
+      }),
+      invalidatesTags: [{ type: 'Applicant', id: 'LIST' }],
+    }),
+    updateApplicant: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `applicants/${id}`,
+        method: 'PUT',
+        body: patch,
+      }),
+      invalidatesTags: (result, error, { id }) => [
+        { type: 'Applicant', id },
+        { type: 'Applicant', id: 'LIST' },
+      ],
+    }),
+    deleteApplicant: builder.mutation({
+      query: (id) => ({
+        url: `applicants/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (result, error, id) => [
+        { type: 'Applicant', id },
+        { type: 'Applicant', id: 'LIST' },
+      ],
+    }),
+    // STAFF
+    getStaff: builder.query({
+      query: () => 'staff',
+      providesTags: (result = [], error, arg) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: 'Staff', id })),
+              { type: 'Staff', id: 'LIST' },
+            ]
+          : [{ type: 'Staff', id: 'LIST' }],
+    }),
+    addStaff: builder.mutation({
+      query: (staff) => ({
+        url: 'staff',
+        method: 'POST',
+        body: staff,
+      }),
+      invalidatesTags: [{ type: 'Staff', id: 'LIST' }],
+    }),
+    updateStaff: builder.mutation({
+      query: ({ id, ...patch }) => ({
+        url: `staff/${id}`,
+        method: 'PUT',
+        body: patch,
+      }),
+      invalidatesTags: (result, error, { id }) => [
+        { type: 'Staff', id },
+        { type: 'Staff', id: 'LIST' },
+      ],
+    }),
+    deleteStaff: builder.mutation({
+      query: (id) => ({
+        url: `staff/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: (result, error, id) => [
+        { type: 'Staff', id },
+        { type: 'Staff', id: 'LIST' },
+      ],
+    }),
   }),
 });
 
@@ -58,4 +218,20 @@ export const {
   useCreateUserMutation,
   useUpdateUserMutation,
   useDeleteUserMutation,
+  useGetProductsQuery,
+  useAddProductMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
+  useGetOrdersQuery,
+  useAddOrderMutation,
+  useUpdateOrderMutation,
+  useDeleteOrderMutation,
+  useGetApplicantsQuery,
+  useAddApplicantMutation,
+  useUpdateApplicantMutation,
+  useDeleteApplicantMutation,
+  useGetStaffQuery,
+  useAddStaffMutation,
+  useUpdateStaffMutation,
+  useDeleteStaffMutation,
 } = apiSlice; 
